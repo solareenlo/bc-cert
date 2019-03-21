@@ -11,21 +11,27 @@ import https from 'https';
 const entropy = '7d1a295c63775a1d6ab11d0990cf1fd1e3ef33864d599a6f91d1e61e2c431ecb';
 const mnemonic = bip39.entropyToMnemonic(entropy);
 const seed = bip39.mnemonicToSeed(mnemonic);
+// const masterNode = bip32.fromSeed(seed, bitcoin.networks.testnet);
 const masterNode = bip32.fromSeed(seed);
 let path = 'm/0/0';
 let child = masterNode.derivePath(path);
 const string = child.neutered().toBase58();
-console.log(child.publicKey);
 
-const getAddress = (node: Buffer, network: bitcoin.Network) => {
+const getAddress = (node: bip32.BIP32, network: bitcoin.Network) => {
   return bitcoin.payments.p2pkh({ pubkey: node.publicKey, network }).address;
 }
 
-const keyPair = bitcoin.ECPair.makeRandom();
-const { address } = bitcoin.payments.p2pkh({ pubkey: keyPair.publicKey});
+
+const { address } = bitcoin.payments.p2sh({
+  redeem: bitcoin.payments.p2wpkh({ pubkey: child.publicKey, network: bitcoin.networks.testnet }),
+  network: bitcoin.networks.testnet
+});
 console.log(address);
 
-const URL = `https://blockchain.info/rawaddr/${address}`;
+// main net 用
+// const URL = `https://blockchain.info/rawaddr/${address}`;
+// test net 用
+const URL = `https://chain.so/api/v2/get_address_received/BTCTEST/${address}`;
 
 https.get(URL, (res) => {
   let body = '';
