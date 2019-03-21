@@ -1,0 +1,20 @@
+{
+  "name": "bc-cert",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "tsc && node ./dist/index.js"
+  },
+  "dependencies": {
+    "bip39": "^2.5.0",
+    "bitcoinjs-lib": "^4.0.3",
+    "dhttp": "^3.0.3"
+  },
+  "devDependencies": {
+    "@types/bip32": "^1.0.2",
+    "@types/bip39": "^2.4.2",
+    "@types/bitcoinjs-lib": "^4.0.1",
+    "typescript": "^3.3.4000"
+  }
+}
