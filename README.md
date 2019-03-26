@@ -8,3 +8,4 @@
 - [bitcoinjs/bitcoinjs-lib](https://github.com/bitcoinjs/bitcoinjs-lib)
 - [bitcoinjs/bip32](https://github.com/bitcoinjs/bip32)
 - [bitcoinjs/bip39](https://github.com/bitcoinjs/bip39)
+- [JavaScriptでSHA256生成](https://scrapbox.io/sola/JavaScriptでSHA256生成)
