@@ -21,7 +21,6 @@ const getAddress = (node: bip32.BIP32, network: bitcoin.Network) => {
   return bitcoin.payments.p2pkh({ pubkey: node.publicKey, network }).address;
 }
 
-
 const { address } = bitcoin.payments.p2sh({
   redeem: bitcoin.payments.p2wpkh({ pubkey: child.publicKey, network: bitcoin.networks.testnet }),
   network: bitcoin.networks.testnet
