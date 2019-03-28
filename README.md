@@ -1,8 +1,17 @@
 # bc-cert
-ビットコインのブロックチェーンに何かしらの証明書のハッシュ値を載せるためのツール群.
+ビットコインのブロックチェーンに何かしらの証明書のハッシュ値を載せるためのツール群.  
+**説明**: [scrapboxにある説明](https://scrapbox.io/solareenlo/ブロックチェーンエンジニア集中講座の修了証明書)
 
-### 説明
-- [scrapboxにある説明](https://scrapbox.io/solareenlo/ブロックチェーンエンジニア集中講座の修了証明書)
+### Usage
+```bash
+git clone git@github.com:solareenlo/bc-cert.git
+cd bc-cert
+npm install or yarn
+// 一応作ったものを動かすには以下の三つのコマンドを叩く
+npm run start or yarn start
+node js/make_tx.js
+open dist/index.html
+```
 
 ### References
 - [bitcoinjs/bitcoinjs-lib](https://github.com/bitcoinjs/bitcoinjs-lib)
