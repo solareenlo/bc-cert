@@ -7,7 +7,9 @@ const https = require('https');
 // $ cat /dev/urandom |tr -dc a-f0-9|head -c${1:-64}
 const entropy = '7d1a295c63775a1d6ab11d0990cf1fd1e3ef33864d599a6f91d1e61e2c431ecb';
 const mnemonic = bip39.entropyToMnemonic(entropy);
+console.log(mnemonic);
 const seed = bip39.mnemonicToSeed(mnemonic);
+console.log(seed.toString('hex'));
 const node = bip32.fromSeed(seed);
 const p2wpkh = bitcoin.payments.p2wpkh({ pubkey: node.publicKey, network: bitcoin.networks.testnet });
 console.log(p2wpkh);

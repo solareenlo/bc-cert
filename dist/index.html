@@ -23,21 +23,25 @@
 				</tr>
 				<tr>
 					<th>ニーモニック</th>
-					<td><textarea id="public_key" name="public_key" cols="30" rows="3" class="wl"></textarea></td>
+					<td><textarea id="mnemonic" name="mnemonic" cols="34" rows="4" class="wl"></textarea></td>
+				</tr>
+				<tr>
+					<th>発行元アドレス</th>
+					<td><input id="input_address" name="input_address" size="34" class="ws"></td>
 				</tr>
 			</table>
 			<p class="l">
-				<input type="submit" value="TxIDブロードキャスト" class="btn">
+				<input type="submit" value="Txブロードキャスト" class="btn">
 			</p>
 			<hr/>
 			<table class="ta1">
 				<tr>
 					<th>TxID</th>
-					<td><input type="text" id="tx_id" name="tx_id" size="30" class="ws"></td>
+					<td><input type="text" id="tx_id" name="tx_id" size="64" class="ws"></td>
 				</tr>
 				<tr>
 					<th>無効TxIDリスト</th>
-					<td><input type="text" id="tx_invalid_list" name="tx_invalid_list" size="30" class="ws"></td>
+					<td><input type="text" id="tx_invalid_list" name="tx_invalid_list" size="64" class="ws"></td>
 				</tr>
 			</table>
 			</form>

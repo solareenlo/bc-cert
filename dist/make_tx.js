@@ -19,11 +19,12 @@ const entropy = '7d1a295c63775a1d6ab11d0990cf1fd1e3ef33864d599a6f91d1e61e2c431ec
 const mnemonic = bip39.entropyToMnemonic(entropy);
 const seed = bip39.mnemonicToSeed(mnemonic);
 const node = bip32.fromSeed(seed);
+console.log(node);
 // const keyPair = bitcoin.ECPair.makeRandom({ network: bitcoin.networks.testnet });
 const p2pkh = bitcoinjs_lib_1.default.payments.p2pkh({ pubkey: node.publicKey, network: bitcoinjs_lib_1.default.networks.testnet });
 const txb = new bitcoinjs_lib_1.default.TransactionBuilder(bitcoinjs_lib_1.default.networks.testnet);
 const data = Buffer.from('pdf-hash', 'utf8');
-// const embed = bitcoin.payments.embed({ data: [data] });
+const embed = bitcoinjs_lib_1.default.payments.embed({ data: [data] });
 // txb.addInput(unspent.txId, unspent.vout);
 // txb.addOutput(embed.output, 1000);
 // txb.addOutput(regtestUtils.RANDOM_ADDRESS, 1e5);
