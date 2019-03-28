@@ -4,7 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "tsc && node ./dist/index.js"
+    "start": "tsc && node ./dist/index.js",
+    "make": "tsc && node ./dist/make_tx.js"
   },
   "dependencies": {
     "bip39": "^2.5.0",
