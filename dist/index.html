@@ -1,52 +1,57 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>証明書発行</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>修了証明書発行</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="text/javascript" src="../js/issu.js"></script>
 </head>
 <body>
 <div class="contents">
-	<div class="inner">
-		<article>
-			<h2>証明書の発行</h2>
-		</article>
-		<form action="issuer.html" method="post" enctype="multipart/form-data">
-			<p><strong>■証明書を発行するには以下を入力してください。</strong><br>
-			<hr/>
-			<table class="ta1">
-				<tr>
-					<th>PDF</th>
-					<td><input type="file" id="pdf_file" name="pdf_file" size="30" class="ws"></td>
-				</tr>
-				<tr>
-					<th>ニーモニック</th>
-					<td><textarea id="mnemonic" name="mnemonic" cols="34" rows="4" class="wl"></textarea></td>
-				</tr>
-				<tr>
-					<th>発行元アドレス</th>
-					<td><input id="input_address" name="input_address" size="34" class="ws"></td>
-				</tr>
-			</table>
-			<p class="l">
-				<input type="submit" value="Txブロードキャスト" class="btn">
-			</p>
-			<hr/>
-			<table class="ta1">
-				<tr>
-					<th>TxID</th>
-					<td><input type="text" id="tx_id" name="tx_id" size="64" class="ws"></td>
-				</tr>
-				<tr>
-					<th>無効TxIDリスト</th>
-					<td><input type="text" id="tx_invalid_list" name="tx_invalid_list" size="64" class="ws"></td>
-				</tr>
-			</table>
-			</form>
-		<p><a href="index.html">&lt;&lt; Topに戻る</a></p>
-	</div>
+  <div class="inner">
+    <article>
+      <h2>証明書の発行</h2>
+    </article>
+    <form action="issuer.html" method="post" enctype="multipart/form-data">
+      <p><strong>■証明書を発行するにはPDFとニーモニックと発行元アドレスを入力後,<br>
+        Txブロードキャストボタンを押してください。■</strong><br>
+      <hr/>
+      <table class="ta1">
+        <tr>
+          <th>PDF</th>
+          <td><input type="file" id="pdf_file" name="pdf_file" size="30" class="ws"></td>
+        </tr>
+        <tr>
+          <th>ニーモニック</th>
+          <td><textarea id="mnemonic" name="mnemonic" cols="34" rows="4" class="wl"></textarea></td>
+        </tr>
+        <tr>
+          <th>発行元アドレス</th>
+          <td><input id="input_address" name="input_address" size="34" class="ws"></td>
+        </tr>
+      </table>
+      <table class="ta1">
+        <tr>
+          <input type="submit" value="Txブロードキャスト" class="btn">
+          <th>ブロードキャストしたTxのTxID：</th><label id="result"></label>
+        </tr>
+      </table>
+      <hr/>
+      <table class="ta1">
+        <tr>
+          <th>TxID</th>
+          <td><input type="text" id="tx_id" name="tx_id" size="64" class="ws"></td>
+        </tr>
+        <tr>
+          <th>無効TxIDリスト</th>
+          <td><input type="text" id="tx_invalid_list" name="tx_invalid_list" size="64" class="ws"></td>
+        </tr>
+      </table>
+      </form>
+    <p><a href="index.html">&lt;&lt; Topに戻る</a></p>
+  </div>
 <!--/inner-->
 </div>
 <!--/contents-->
