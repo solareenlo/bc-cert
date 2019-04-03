@@ -7,9 +7,7 @@
 git clone git@github.com:solareenlo/bc-cert.git
 cd bc-cert
 npm install or yarn
-// 一応作ったものを動かすには以下の三つのコマンドを叩く
-npm run start or yarn start
-node js/make_tx.js
+npm run bundle or yarn bundle
 open dist/index.html
 ```
 
