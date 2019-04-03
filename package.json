@@ -5,18 +5,21 @@
   "license": "MIT",
   "scripts": {
     "start": "tsc && node ./dist/index.js",
-    "make": "tsc && node ./dist/make_tx.js"
+    "make": "tsc && node ./dist/make_tx.js",
+    "bundle": "browserify js/issue.js -o js/issue_bundle.js"
   },
   "dependencies": {
     "bip39": "^2.5.0",
     "bitcoin-ts": "^1.4.0",
     "bitcoinjs-lib": "^4.0.3",
-    "dhttp": "^3.0.3"
+    "dhttp": "^3.0.3",
+    "wif": "^2.0.6"
   },
   "devDependencies": {
     "@types/bip32": "^1.0.2",
     "@types/bip39": "^2.4.2",
     "@types/bitcoinjs-lib": "^4.0.1",
+    "browserify": "^16.2.3",
     "typescript": "^3.3.4000"
   }
 }
