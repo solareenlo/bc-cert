@@ -6,9 +6,12 @@
 ```bash
 git clone git@github.com:solareenlo/bc-cert.git
 cd bc-cert
-npm install or yarn
-npm run bundle or yarn bundle
+npm install か yarn
+npm run bundle か yarn bundle
+// for Mac
 open dist/index.html
+// for Ubuntu
+xdg-open dist/index.html
 ```
 
 ### References
