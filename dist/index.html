@@ -25,14 +25,26 @@
         <tr>
           <th>PDFのハッシュ値(16進数): </th><td id="digest"></td>
         </tr>
+      </table>
+      <br>
+      <table class='ta1'>
         <tr>
           <th>秘密鍵(WIF)</th>
-          <td><input type="text" id="secret_key" name="secret_key" size="64" class="ws"></td>
+          <td><input type="text" id="secretKey" name="secretKey" size="64" class="ws"></td>
         </tr>
       </table>
+      <table class='ta1'>
+        <tr>
+          <button type="button" onclick="makeAddress(document.getElementById('secretKey').value)">アドレスを確認する</button>
+          <th>秘密鍵(WIF)に対応するp2wpkhアドレス: </th><td id="address"></td>
+        </tr>
+        <tr>
+        </tr>
+      </table>
+      <br>
       <table class="ta1">
         <tr>
-          <input type="submit" value="Txブロードキャスト" class="btn">
+          <button type="submit" value="Txブロードキャスト">Txをブロードキャストする</button>
           <th>ブロードキャストしたTxのTxID：</th><label id="result"></label>
         </tr>
       </table>
