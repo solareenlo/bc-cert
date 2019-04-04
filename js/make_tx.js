@@ -2,8 +2,11 @@ const bip39 = require('bip39');
 const bip32 = require('bip32');
 const bitcoin = require('bitcoinjs-lib');
 const https = require('https');
+const wif = require('wif');
 
-// ターミナルでentropyを生成する方法
+// Macのターミナルでentropyを生成する方法
+// $ cat /dev/urandom |LC_ALL=C tr -dc 'a-f0-9' | fold -w 64 | head -n 1
+// ubuntuのコンソールでentropyを生成する方法
 // $ cat /dev/urandom |tr -dc a-f0-9|head -c${1:-64}
 const entropy = '7d1a295c63775a1d6ab11d0990cf1fd1e3ef33864d599a6f91d1e61e2c431ecb';
 console.log('entropy: ', entropy);
