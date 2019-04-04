@@ -1,8 +1,10 @@
+const bip39 = require('bip39');
 const bitcoin = require('bitcoinjs-lib');
 const https = require('https');
 const wif = require('wif');
 
 const TESTNET = bitcoin.networks.testnet;
+const MAINNET = bitcoin.networks.bitcoin;
 
 const getDigest = (fileBuffeArrray) => bitcoin.crypto.sha256(Buffer(fileBuffeArrray)).toString('hex');
 
@@ -19,12 +21,17 @@ const makeDigest = (evt) => {
   reader.readAsArrayBuffer(files);
 }
 
-const makeAddress = (wif) => {
-  const keyPair = bitcoin.ECPair.fromWIF(wif);
-  const { address } = bitcoin.payments.p2wpkh({ pubkey: keyPair.publicKey, network: TESTNET });
-  document.getElementById("address").textContent = address;
+const makeAddress = (mnemonic) => {
+  const seed = bip39.mnemonicToSeed(mnemonic);
+  const xprv = bitcoin.bip32.fromSeed(seed, TESTNET);
+  const { address } = bitcoin.payments.p2wpkh({ pubkey: xprv.publicKey, network: TESTNET });
+  document.getElementById('address').textContent = address;
 }
 
-window.getDigest = getDigest;
+const broadcastTx = (mnemonic, digest) => {
+  document.getElementById('txId').textContent = 'testtesttest';
+}
+
 window.makeDigest = makeDigest;
 window.makeAddress = makeAddress;
+window.broadcastTx = broadcastTx;

@@ -15,7 +15,7 @@
       <h2>証明書の発行</h2>
     </article>
     <form action="issuer.html" method="post" enctype="multipart/form-data">
-      <p><strong>■証明書を発行するにはPDFと秘密鍵(WIF)を入力後、Txブロードキャストボタンを押してください。■</strong><br>
+      <p><strong>■証明書を発行するにはPDFとニーモニックを入力後、Txブロードキャストボタンを押してください。■</strong><br>
       <hr/>
       <table class="ta1">
         <tr>
@@ -29,14 +29,14 @@
       <br>
       <table class='ta1'>
         <tr>
-          <th>秘密鍵(WIF)</th>
-          <td><input type="text" id="secretKey" name="secretKey" size="64" class="ws"></td>
+          <th>ニーモニック</th>
+          <td><input type="text" id="mnemonic" name="mnemonic" size="128" class="ws"></td>
         </tr>
       </table>
       <table class='ta1'>
         <tr>
-          <button type="button" onclick="makeAddress(document.getElementById('secretKey').value)">アドレスを確認する</button>
-          <th>秘密鍵(WIF)に対応するp2wpkhアドレス: </th><td id="address"></td>
+          <button type="button" onclick="makeAddress(document.getElementById('mnemonic').value)">アドレスを確認する</button>
+          <th>ニーモニックに対応するp2wpkhアドレス: </th><td id="address"></td>
         </tr>
         <tr>
         </tr>
@@ -44,8 +44,8 @@
       <br>
       <table class="ta1">
         <tr>
-          <button type="submit" value="Txブロードキャスト">Txをブロードキャストする</button>
-          <th>ブロードキャストしたTxのTxID：</th><label id="result"></label>
+          <button type="button" onclick="broadcastTx(document.getElementById('mnemonic').value, document.getElementById('digest').value)">Txをブロードキャストする</button>
+          <th>ブロードキャストしたTxのTxID: </th><td id="txId"></td>
         </tr>
       </table>
       <hr/>
