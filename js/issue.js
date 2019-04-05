@@ -22,7 +22,7 @@ const makeDigest = (evt) => {
   reader.readAsArrayBuffer(files);
 }
 
-const makeAddress = async (mnemonic) => {
+const getAddress = async (mnemonic) => {
   const seed = bip39.mnemonicToSeed(mnemonic);
   const xprv = bitcoin.bip32.fromSeed(seed, TESTNET);
   const p2pkh = bitcoin.payments.p2pkh({ pubkey: xprv.publicKey, network: TESTNET });
@@ -63,5 +63,5 @@ const broadcastTx = (mnemonic, digest) => {
 }
 
 window.makeDigest = makeDigest;
-window.makeAddress = makeAddress;
+window.getAddress = getAddress;
 window.broadcastTx = broadcastTx;
