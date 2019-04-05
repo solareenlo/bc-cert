@@ -52,8 +52,9 @@ function doRequest(options) {
   return new Promise((resolve, reject) => {
     request(options, (error, res, body) => {
       if (!error && res.statusCode == 200) {
-        const json = JSON.parse(body);
-        resolve(json);
+        // const json = JSON.parse(body);
+        // resolve(json);
+        resolve(body);
       } else {
         reject(error);
       }
@@ -65,7 +66,8 @@ const getBalance = async (address) => {
   const URL = `https://chain.so/api/v2/get_tx_unspent/BTCTEST/${address}`;
   const requestOptions = {
     url: URL,
-    method: 'GET'
+    method: 'GET',
+    json: true
   }
   const json = await doRequest(requestOptions);
   json.data.txs = json.data.txs.map((tx) => {tx.value=Math.floor(100000000*tx.value); return tx});
@@ -82,7 +84,8 @@ const createTx = async (mnemonic, address, digest, balance) => {
   const URL = `https://chain.so/api/v2/get_tx_unspent/BTCTEST/${address}`;
   const requestOptions = {
     url: URL,
-    method: 'GET'
+    method: 'GET',
+    json: true
   }
   const json = await doRequest(requestOptions);
   json.data.txs = json.data.txs.map((tx) => {tx.value=Math.floor(100000000*tx.value); return tx});
@@ -110,24 +113,20 @@ const createTx = async (mnemonic, address, digest, balance) => {
   const tx = txb.build();
   document.getElementById('rawTx').textContent = tx.toHex();
   document.getElementById('rawTx').value = tx.toHex();
-  document.getElementById('txId').textContent = tx.getId();
-  document.getElementById('txId').value = tx.getId();
 }
 
-const broadcastTx = (rawTx) => {
+const broadcastTx = async (rawTx) => {
   const URL = 'https://chain.so/api/v2/send_tx/BTCTEST';
   const requestOptions = {
     url: URL,
     method: 'POST',
-    headers: {
-      'Content-type': 'application/json',
-    },
     json: {
-      'tx_hex': rawTx
+      tx_hex: rawTx
     }
   }
-  // const json = await doRequest(requestOptions);
-  document.getElementById('tx_id').textContent = json.txid;
+  const json = await doRequest(requestOptions);
+  document.getElementById('txId').textContent = json.txid;
+  document.getElementById('txId').value = json.txid;
 }
 
 window.makeDigest = makeDigest;
