@@ -13,6 +13,7 @@
     "bitcoin-ts": "^1.4.0",
     "bitcoinjs-lib": "^4.0.3",
     "dhttp": "^3.0.3",
+    "request": "^2.88.0",
     "wif": "^2.0.6"
   },
   "devDependencies": {
