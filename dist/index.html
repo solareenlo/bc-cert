@@ -43,9 +43,16 @@
         </tr>
       </table>
       <br>
+      <table class='ta1'>
+        <tr>
+          <button type='button' onclick="createTx(document.getElementById('mnemonic').value, document.getElementById('address').value, document.getElementById('digest').value, document.getElementById('balance').value)">Txを作成</button>
+          <th>Txの生データ: </th><td id="rawTx"></td>
+        </tr>
+      </table>
+      <br>
       <table class="ta1">
         <tr>
-          <button type="button" onclick="broadcastTx(document.getElementById('mnemonic').value, document.getElementById('digest').value)">Txをブロードキャストする</button>
+          <button type="button" onclick="broadcastTx(document.getElementById('rawTx').value)">Txをブロードキャストする</button>
           <th>ブロードキャストしたTxのTxID: </th><td id="txId"></td>
         </tr>
       </table>
