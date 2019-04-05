@@ -48,7 +48,6 @@ function httpRequest(options) {
 }
 
 const getBalance = async (address) => {
-  let balance = 0;
   // const URL = `https://chain.so/api/v2/get_address_balance/BTCTEST/${address}`;
   const URL = `https://chain.so/api/v2/get_tx_unspent/BTCTEST/${address}`;
   const requestOptions = {
@@ -58,7 +57,7 @@ const getBalance = async (address) => {
   const body = await httpRequest(requestOptions);
   let json = JSON.parse(body);
   json.data.txs = json.data.txs.map((tx) => {tx.value=Math.floor(100000000*tx.value); return tx});
-  balance = json.data.txs.reduce((a, b) => a+b.value, 0);
+  let balance = json.data.txs.reduce((a, b) => a+b.value, 0);
   /* この中では非同期処理でhttpリクエストを投げてる.
    * Nodejsは標準で非同期処理してくれる.
   await https.get(URL, (res) => {
@@ -77,7 +76,7 @@ const getBalance = async (address) => {
     console.error(e);
   });
   */
-      return balance;
+  return balance;
 }
 
 const broadcastTx = (mnemonic, digest) => {
