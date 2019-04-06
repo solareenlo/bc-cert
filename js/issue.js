@@ -34,7 +34,7 @@ const generatePayment = (mnemonic, NET) => {
 const generateKeypair = (mnemonic, NET) => {
   const seed = bip39.mnemonicToSeed(mnemonic);
   const xprv = bitcoin.bip32.fromSeed(seed, NET);
-  const privateKey = xprv.derive(0).privateKey;
+  const privateKey = xprv.privateKey;
   const keyPair = bitcoin.ECPair.fromPrivateKey(privateKey, { network: NET });
   return keyPair;
 }
@@ -52,8 +52,6 @@ function doRequest(options) {
   return new Promise((resolve, reject) => {
     request(options, (error, res, body) => {
       if (!error && res.statusCode == 200) {
-        // const json = JSON.parse(body);
-        // resolve(json);
         resolve(body);
       } else {
         reject(error);
@@ -120,13 +118,14 @@ const broadcastTx = async (rawTx) => {
   const requestOptions = {
     url: URL,
     method: 'POST',
-    json: {
-      tx_hex: rawTx
-    }
+    headers: {
+      "content-type": "application/json"
+    },
+    json: { tx_hex: rawTx }
   }
   const json = await doRequest(requestOptions);
-  document.getElementById('txId').textContent = json.txid;
-  document.getElementById('txId').value = json.txid;
+  document.getElementById('txId').textContent = json.data.txid;
+  document.getElementById('txId').value = json.data.txid;
 }
 
 window.makeDigest = makeDigest;
