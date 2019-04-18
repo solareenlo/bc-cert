@@ -1,13 +1,13 @@
 import * as bip39 from 'bip39';
 import * as bip32 from 'bip32';
-import bitcoin from 'bitcoinjs-lib';
+import * as bitcoin from 'bitcoinjs-lib';
 import https from 'https';
 
 // ターミナルでentropyを生成する方法
 // $ cat /dev/urandom |tr -dc a-f0-9|head -c${1:-64}
 const entropy = '7d1a295c63775a1d6ab11d0990cf1fd1e3ef33864d599a6f91d1e61e2c431ecb';
 const mnemonic = bip39.entropyToMnemonic(entropy);
-const seed = bip39.mnemonicToSeed(mnemonic);
+const seed = bip39.mnemonicToSeedSync(mnemonic);
 const node = bip32.fromSeed(seed);
 // const keyPair = bitcoin.ECPair.makeRandom({ network: bitcoin.networks.testnet });
 const p2pkh = bitcoin.payments.p2pkh({ pubkey: node.publicKey, network: bitcoin.networks.testnet });

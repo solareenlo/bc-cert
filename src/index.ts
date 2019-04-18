@@ -1,6 +1,7 @@
 import * as bip39 from 'bip39';
 import * as bip32 from 'bip32';
-import bitcoin from 'bitcoinjs-lib';
+import { BIP32Interface } from 'bip32';
+import * as bitcoin from 'bitcoinjs-lib';
 import https from 'https';
 // import dhttp from 'dhttp/200';
 
@@ -10,14 +11,14 @@ import https from 'https';
 // $ cat /dev/urandom |tr -dc a-f0-9|head -c${1:-64}
 const entropy = '7d1a295c63775a1d6ab11d0990cf1fd1e3ef33864d599a6f91d1e61e2c431ecb';
 const mnemonic = bip39.entropyToMnemonic(entropy);
-const seed = bip39.mnemonicToSeed(mnemonic);
+const seed = bip39.mnemonicToSeedSync(mnemonic);
 // const masterNode = bip32.fromSeed(seed, bitcoin.networks.testnet);
 const masterNode = bip32.fromSeed(seed);
 let path = 'm/0/0';
 let child = masterNode.derivePath(path);
 const string = child.neutered().toBase58();
 
-const getAddress = (node: bip32.BIP32, network: bitcoin.Network) => {
+const getAddress = (node: BIP32Interface, network: bitcoin.Network) => {
   return bitcoin.payments.p2pkh({ pubkey: node.publicKey, network }).address;
 }
 

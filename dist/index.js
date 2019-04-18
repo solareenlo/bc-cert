@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const bip39 = __importStar(require("bip39"));
 const bip32 = __importStar(require("bip32"));
-const bitcoinjs_lib_1 = __importDefault(require("bitcoinjs-lib"));
+const bitcoin = __importStar(require("bitcoinjs-lib"));
 const https_1 = __importDefault(require("https"));
 // import dhttp from 'dhttp/200';
 // const mnemonic = bip39.generateMnemonic(256);
@@ -20,18 +20,18 @@ const https_1 = __importDefault(require("https"));
 // $ cat /dev/urandom |tr -dc a-f0-9|head -c${1:-64}
 const entropy = '7d1a295c63775a1d6ab11d0990cf1fd1e3ef33864d599a6f91d1e61e2c431ecb';
 const mnemonic = bip39.entropyToMnemonic(entropy);
-const seed = bip39.mnemonicToSeed(mnemonic);
+const seed = bip39.mnemonicToSeedSync(mnemonic);
 // const masterNode = bip32.fromSeed(seed, bitcoin.networks.testnet);
 const masterNode = bip32.fromSeed(seed);
 let path = 'm/0/0';
 let child = masterNode.derivePath(path);
 const string = child.neutered().toBase58();
 const getAddress = (node, network) => {
-    return bitcoinjs_lib_1.default.payments.p2pkh({ pubkey: node.publicKey, network }).address;
+    return bitcoin.payments.p2pkh({ pubkey: node.publicKey, network }).address;
 };
-const { address } = bitcoinjs_lib_1.default.payments.p2sh({
-    redeem: bitcoinjs_lib_1.default.payments.p2wpkh({ pubkey: child.publicKey, network: bitcoinjs_lib_1.default.networks.testnet }),
-    network: bitcoinjs_lib_1.default.networks.testnet
+const { address } = bitcoin.payments.p2sh({
+    redeem: bitcoin.payments.p2wpkh({ pubkey: child.publicKey, network: bitcoin.networks.testnet }),
+    network: bitcoin.networks.testnet
 });
 console.log(address);
 // main net 用
